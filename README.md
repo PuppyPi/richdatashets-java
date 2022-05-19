@@ -1,2 +1,2 @@
 # richdatashets-java
-Java implementation of [Richdatashets](https://github.com/PuppyPi/richdatashets)!
+The [Richdatashets](https://github.com/PuppyPi/richdatashets) Core Model / API in Java
