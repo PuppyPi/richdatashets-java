@@ -16,14 +16,14 @@ import javax.annotation.concurrent.Immutable;
  * TODO + This doesn't support a proper {@link #hashCode()} or {@link #equals(Object)} because colors are floating point in google sheets and that would be not always reliable.<br>
  */
 @Immutable
-public class DatashetCell
+public class RichdatashetCell
 {
 	/**
 	 * Note that this is just for performance.<br>
 	 * There can be multiple instances of blank datashet cells (and indeed, equivalent non-blank ones), just like there can be multiple empty strings or "abc"'s
 	 * that are Java Reference-wise different (==) but equivalence-wise the same (.equals(), except that this doesn't support that ^^' )<br>
 	 */
-	public static final DatashetCell Blank = new DatashetCell("", false, false, false, false, null, null);
+	public static final RichdatashetCell Blank = new RichdatashetCell("", false, false, false, false, null, null);
 	
 	
 	protected final @Nonnull String contents;
@@ -31,10 +31,10 @@ public class DatashetCell
 	protected final boolean underline;
 	protected final boolean italic;
 	protected final boolean strikethrough;
-	protected final @Nullable DatashetsColor backgroundColor;
-	protected final @Nullable DatashetsColor textColor;
+	protected final @Nullable RichdatashetColor backgroundColor;
+	protected final @Nullable RichdatashetColor textColor;
 	
-	public DatashetCell(@Nonnull String contents, boolean bold, boolean underline, boolean italic, boolean strikethrough, DatashetsColor backgroundColor, DatashetsColor textColor)
+	public RichdatashetCell(@Nonnull String contents, boolean bold, boolean underline, boolean italic, boolean strikethrough, RichdatashetColor backgroundColor, RichdatashetColor textColor)
 	{
 		this.contents = requireNonNull(contents);
 		this.bold = bold;
@@ -64,9 +64,9 @@ public class DatashetCell
 		textColor == null;
 	}
 	
-	public DatashetCell withDifferentText(String newText)
+	public RichdatashetCell withDifferentText(String newText)
 	{
-		return new DatashetCell(newText, bold, underline, italic, strikethrough, backgroundColor, textColor);
+		return new RichdatashetCell(newText, bold, underline, italic, strikethrough, backgroundColor, textColor);
 	}
 	
 	
@@ -96,12 +96,12 @@ public class DatashetCell
 		return strikethrough;
 	}
 	
-	public DatashetsColor getBackgroundColor()
+	public RichdatashetColor getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 	
-	public DatashetsColor getTextColor()
+	public RichdatashetColor getTextColor()
 	{
 		return textColor;
 	}
@@ -130,7 +130,7 @@ public class DatashetCell
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DatashetCell other = (DatashetCell) obj;
+		RichdatashetCell other = (RichdatashetCell) obj;
 		if (bold != other.bold)
 			return false;
 		if (contents == null)
@@ -177,7 +177,7 @@ public class DatashetCell
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DatashetCell other = (DatashetCell) obj;
+		RichdatashetCell other = (RichdatashetCell) obj;
 		if (backgroundColor == null)
 		{
 			if (other.backgroundColor != null)

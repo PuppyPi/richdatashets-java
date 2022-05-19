@@ -7,13 +7,13 @@ import java.util.List;
  * spreadsheet starting on the first data, non-header, row at 0.  This is used to copy data from the spreadsheet before overwriting it.  If this value here is -1, then it's treated as a new row that has been
  * added (though not necessarily to the end!  things can be inserted and rearranged however you like and if you take care of these original-indexes, then it won't mess up extra data/formatting :> )
  */
-public class DatashetRow
+public class RichdatashetRow
 {
-	protected List<DatashetCell> singleValuedColumns;
-	protected List<List<DatashetCell>> multiValuedColumns;
+	protected List<RichdatashetCell> singleValuedColumns;
+	protected List<List<RichdatashetCell>> multiValuedColumns;
 	protected int originalDataRowIndex = -1;  //-1, 0, 1, 2, etc.
 	
-	public DatashetRow()
+	public RichdatashetRow()
 	{
 		super();
 	}
@@ -22,35 +22,35 @@ public class DatashetRow
 	 * @param singleValuedColumns  live reference to it is kept!
 	 * @param multiValuedColumns  live reference to it is kept!
 	 */
-	public DatashetRow(List<DatashetCell> singleValuedColumns, List<List<DatashetCell>> multiValuedColumns)
+	public RichdatashetRow(List<RichdatashetCell> singleValuedColumns, List<List<RichdatashetCell>> multiValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 	}
 	
-	public DatashetRow(List<DatashetCell> singleValuedColumns, List<List<DatashetCell>> multiValuedColumns, int originalDataRowIndex)
+	public RichdatashetRow(List<RichdatashetCell> singleValuedColumns, List<List<RichdatashetCell>> multiValuedColumns, int originalDataRowIndex)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 		this.setOriginalDataRowIndex(originalDataRowIndex);
 	}
 
-	public List<DatashetCell> getSingleValuedColumns()
+	public List<RichdatashetCell> getSingleValuedColumns()
 	{
 		return singleValuedColumns;
 	}
 	
-	public void setSingleValuedColumns(List<DatashetCell> singleValuedColumns)
+	public void setSingleValuedColumns(List<RichdatashetCell> singleValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 	}
 	
-	public List<List<DatashetCell>> getMultiValuedColumns()
+	public List<List<RichdatashetCell>> getMultiValuedColumns()
 	{
 		return multiValuedColumns;
 	}
 	
-	public void setMultiValuedColumns(List<List<DatashetCell>> multiValuedColumns)
+	public void setMultiValuedColumns(List<List<RichdatashetCell>> multiValuedColumns)
 	{
 		this.multiValuedColumns = multiValuedColumns;
 	}

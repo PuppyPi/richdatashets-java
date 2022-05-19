@@ -16,7 +16,7 @@ import javax.annotation.concurrent.Immutable;
  * This can't be done opaquely for {@link #getUIDsReadonly()}.indexOf()/contains()/etc. and {@link #getIndexesByUIDReadonly()}.get()/containsKey()/etc.<br>
  */
 @Immutable
-public class DatashetSemanticColumns
+public class RichdatashetSemanticColumns
 {
 	protected final String[] uids;
 	protected final Map<String, Integer> indexesByUID;
@@ -25,7 +25,7 @@ public class DatashetSemanticColumns
 	/**
 	 * @param columnUIDs it is copied; a reference to it is not kept.
 	 */
-	public DatashetSemanticColumns(@Nonnull List<String> columnUIDs)
+	public RichdatashetSemanticColumns(@Nonnull List<String> columnUIDs)
 	{
 		int nColumns = columnUIDs.size();
 		
@@ -88,13 +88,13 @@ public class DatashetSemanticColumns
 	
 	/**
 	 * @param uid case insensitive (auto uppercased)
-	 * @throws DatashetNoSuchColumnException  if not present
+	 * @throws RichdatashetNoSuchColumnException  if not present
 	 */
-	public int requireIndexByUID(String uid) throws DatashetNoSuchColumnException
+	public int requireIndexByUID(String uid) throws RichdatashetNoSuchColumnException
 	{
 		Integer i = getIndexByUID(uid);
 		if (i == null)
-			throw new DatashetNoSuchColumnException(uid);
+			throw new RichdatashetNoSuchColumnException(uid);
 		else
 			return i;
 	}
@@ -119,14 +119,14 @@ public class DatashetSemanticColumns
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DatashetSemanticColumns other = (DatashetSemanticColumns) obj;
+		RichdatashetSemanticColumns other = (RichdatashetSemanticColumns) obj;
 		if (!Arrays.equals(uids, other.uids))
 			return false;
 		return true;
 	}
 	
 	
-	public boolean hasSameUIDsIgnoringOrder(DatashetSemanticColumns other)
+	public boolean hasSameUIDsIgnoringOrder(RichdatashetSemanticColumns other)
 	{
 		return new HashSet<>(this.getUIDsReadonly()).equals(new HashSet<>(other.getUIDsReadonly()));
 	}
