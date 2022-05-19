@@ -1,2 +1,2 @@
-# datashets-java
-Java implementation of [Datashets](https://github.com/PuppyPi/datashets)!
+# richdatashets-java
+Java implementation of [Richdatashets](https://github.com/PuppyPi/richdatashets)!
