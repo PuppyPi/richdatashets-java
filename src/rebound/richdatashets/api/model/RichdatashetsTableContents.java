@@ -84,13 +84,16 @@ public class RichdatashetsTableContents
 	
 	
 	/**
-	 * @return it's just a plain list of {@link RichdatashetsRow}s, fully writable and {@link #setRows(List) changeable}!
+	 * @return it's just a plain list of {@link RichdatashetsRow}s and nulls, fully writable and {@link #setRows(List) changeable}!
 	 */
 	public List<RichdatashetsRow> getRows()
 	{
 		return rows;
 	}
 	
+	/**
+	 * @param rows  (a live reference will be kept to it!)
+	 */
 	public void setRows(List<RichdatashetsRow> rows)
 	{
 		this.rows = rows;
@@ -201,7 +204,7 @@ public class RichdatashetsTableContents
 	
 	
 	/**
-	 * Adds a new blank row to the end, returning it if you want to edit it!<br>
+	 * Adds a new row with {@link RichdatashetsCell#Blank blank} cells to the end, returning it in case you want to edit it!<br>
 	 * (Its index will be = {@link #getNumberOfRows()} just before this is called :3 )<br>
 	 * <br>
 	 * The lists in multivalued columns will be writable but (initially) empty lists.<br>
