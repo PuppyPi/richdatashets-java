@@ -246,7 +246,7 @@ public class RichdatashetsTable
 	 */
 	public @Nonnull RichdatashetsCellContents getCell(String columnUID, RichdatashetsRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		return getCell(columnsSingleValued.requireIndexByUID(columnUID), row);
+		return getCell(columnsMultiValued.requireIndexByUID(columnUID), row);
 	}
 	
 	/**
@@ -256,7 +256,7 @@ public class RichdatashetsTable
 	 */
 	public void setCell(String columnUID, RichdatashetsRow row, @Nonnull RichdatashetsCellContents value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		setCell(columnsSingleValued.requireIndexByUID(columnUID), row, value);
+		setCell(columnsMultiValued.requireIndexByUID(columnUID), row, value);
 	}
 	
 	
