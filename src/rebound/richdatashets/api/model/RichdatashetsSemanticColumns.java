@@ -15,6 +15,8 @@ import javax.annotation.concurrent.Immutable;
 /**
  * Note: Column UIDs are always uppercased for case-insensitivity (really they should be short hex strings, say 8 chars (4 bytes, 32 bits)).<br>
  * This can't be done opaquely for {@link #getUIDsReadonly()}.indexOf()/contains()/etc. and {@link #getIndexesByUIDReadonly()}.get()/containsKey()/etc.<br>
+ * 
+ * The column indexes here are completely arbitrary but guaranteed to start at 0 and go up to N-1, matching the {@link List} indexes of {@link #getUIDsReadonly()}.
  */
 @Immutable
 public class RichdatashetsSemanticColumns
