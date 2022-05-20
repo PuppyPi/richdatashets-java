@@ -5,7 +5,10 @@ import static java.util.Objects.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.Nonnull;
+import rebound.datashets.api.model.DatashetsRow;
+import rebound.datashets.api.model.DatashetsSemanticColumns;
 
 /**
  * Note: while row indexes match up perfectly with the Google Sheet (after the frozen header rows), column indexes certainly don't generally!!<br>
@@ -31,10 +34,18 @@ public class RichdatashetsTableContents
 	}
 	
 	/**
-	 * @param rows  this will be kept as a live reference!
+	 * + Note that there can't be any overlap between the UIDs of single and multi value column-sets!
+	 * @param rows  this will be kept as a live reference!  (you can set it to null briefly, but make sure to {@link #setRows(List) set it} to something sensible before it's used!!)
 	 */
-	public RichdatashetsTableContents(RichdatashetsSemanticColumns columnsSingleValued, RichdatashetsSemanticColumns columnsMultiValued, List<RichdatashetsRow> rows)
+	public RichdatashetsTableContents(@Nonnull RichdatashetsSemanticColumns columnsSingleValued, @Nonnull RichdatashetsSemanticColumns columnsMultiValued, List<RichdatashetsRow> rows)
 	{
+		requireNonNull(columnsSingleValued);
+		requireNonNull(columnsMultiValued);
+		
+		Set<String> uidOverlap = columnsSingleValued.getUIDOverlapWith(columnsMultiValued);
+		if (!uidOverlap.isEmpty())
+			throw new IllegalArgumentException("Overlap between single and multi valued columns' UIDs!!: "+uidOverlap);
+		
 		this.columnsSingleValued = columnsSingleValued;
 		this.columnsMultiValued = columnsMultiValued;
 		this.rows = rows;

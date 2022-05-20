@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
@@ -129,5 +130,12 @@ public class RichdatashetsSemanticColumns
 	public boolean hasSameUIDsIgnoringOrder(RichdatashetsSemanticColumns other)
 	{
 		return new HashSet<>(this.getUIDsReadonly()).equals(new HashSet<>(other.getUIDsReadonly()));
+	}
+	
+	public Set<String> getUIDOverlapWith(RichdatashetsSemanticColumns other)
+	{
+		Set<String> s = new HashSet<>(this.getUIDsReadonly());
+		s.retainAll(other.getUIDsReadonly());
+		return s;
 	}
 }
