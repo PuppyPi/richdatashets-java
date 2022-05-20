@@ -14,9 +14,9 @@ import javax.annotation.concurrent.Immutable;
 
 /**
  * Note: Column UIDs are always uppercased for case-insensitivity (really they should be short hex strings, say 8 chars (4 bytes, 32 bits)).<br>
- * This can't be done opaquely for {@link #getUIDsReadonly()}.indexOf()/contains()/etc. and {@link #getIndexesByUIDReadonly()}.get()/containsKey()/etc.<br>
+ * This can't be done opaquely for {@link #getUIDs()}.indexOf()/contains()/etc. and {@link #getIndexesByUID()}.get()/containsKey()/etc.<br>
  * 
- * The column indexes here are completely arbitrary but guaranteed to start at 0 and go up to N-1, matching the {@link List} indexes of {@link #getUIDsReadonly()}.
+ * The column indexes here are completely arbitrary but guaranteed to start at 0 and go up to N-1, matching the {@link List} indexes of {@link #getUIDs()}.
  */
 @Immutable
 public class RichdatashetsSemanticColumns
@@ -64,12 +64,12 @@ public class RichdatashetsSemanticColumns
 	}
 	
 	
-	public @Nonnull List<String> getUIDsReadonly()
+	public @Nonnull List<String> getUIDs()
 	{
 		return unmodifiableList(asList(uids));
 	}
 	
-	public @Nonnull Map<String, Integer> getIndexesByUIDReadonly()
+	public @Nonnull Map<String, Integer> getIndexesByUID()
 	{
 		return unmodifiableMap(indexesByUID);
 	}
@@ -131,13 +131,13 @@ public class RichdatashetsSemanticColumns
 	
 	public boolean hasSameUIDsIgnoringOrder(RichdatashetsSemanticColumns other)
 	{
-		return new HashSet<>(this.getUIDsReadonly()).equals(new HashSet<>(other.getUIDsReadonly()));
+		return new HashSet<>(this.getUIDs()).equals(new HashSet<>(other.getUIDs()));
 	}
 	
 	public Set<String> getUIDOverlapWith(RichdatashetsSemanticColumns other)
 	{
-		Set<String> s = new HashSet<>(this.getUIDsReadonly());
-		s.retainAll(other.getUIDsReadonly());
+		Set<String> s = new HashSet<>(this.getUIDs());
+		s.retainAll(other.getUIDs());
 		return s;
 	}
 }
