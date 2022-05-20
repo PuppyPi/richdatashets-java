@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.Nonnull;
-import rebound.datashets.api.model.DatashetsRow;
-import rebound.datashets.api.model.DatashetsSemanticColumns;
 
 /**
  * Note: while row indexes match up perfectly with the Google Sheet (after the frozen header rows), column indexes certainly don't generally!!<br>
