@@ -84,10 +84,15 @@ public class RichdatashetsCellContents
 	
 	public String justText()
 	{
-		StringBuilder b = new StringBuilder();
-		for (RichdatashetsCellContentsRun r : getContents())
-			b.append(r.getContents());
-		return b.toString();
+		if (getContents().size() == 1)
+			return getContents().get(0).getContents();
+		else
+		{
+			StringBuilder b = new StringBuilder();
+			for (RichdatashetsCellContentsRun r : getContents())
+				b.append(r.getContents());
+			return b.toString();
+		}
 	}
 	
 	
