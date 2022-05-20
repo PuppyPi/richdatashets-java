@@ -1,4 +1,4 @@
-package rebound.richdatashets.lib.model;
+package rebound.richdatashets.api.model;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -13,11 +13,11 @@ import javax.annotation.concurrent.Immutable;
  * And thus this also doesn't support a proper {@link #hashCode()} or {@link #equals(Object)} because of the floating points; it would be not always reliable.<br>
  */
 @Immutable
-public class RichdatashetColor
+public class RichdatashetsColor
 {
 	protected final int r, g, b;  //[0, 256) = [0, 255]  like usual :3
 	
-	public RichdatashetColor(int r, int g, int b)
+	public RichdatashetsColor(int r, int g, int b)
 	{
 		if (r < 0)  throw new IllegalArgumentException();
 		if (r > 255)  throw new IllegalArgumentException();  //not (r < 0 || r > 255) because this way there's different line numbers :3
@@ -66,7 +66,7 @@ public class RichdatashetColor
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RichdatashetColor other = (RichdatashetColor) obj;
+		RichdatashetsColor other = (RichdatashetsColor) obj;
 		if (b != other.b)
 			return false;
 		if (g != other.g)

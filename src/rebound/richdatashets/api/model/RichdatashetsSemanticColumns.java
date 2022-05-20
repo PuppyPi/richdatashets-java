@@ -1,4 +1,4 @@
-package rebound.richdatashets.lib.model;
+package rebound.richdatashets.api.model;
 
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
@@ -16,7 +16,7 @@ import javax.annotation.concurrent.Immutable;
  * This can't be done opaquely for {@link #getUIDsReadonly()}.indexOf()/contains()/etc. and {@link #getIndexesByUIDReadonly()}.get()/containsKey()/etc.<br>
  */
 @Immutable
-public class RichdatashetSemanticColumns
+public class RichdatashetsSemanticColumns
 {
 	protected final String[] uids;
 	protected final Map<String, Integer> indexesByUID;
@@ -25,7 +25,7 @@ public class RichdatashetSemanticColumns
 	/**
 	 * @param columnUIDs it is copied; a reference to it is not kept.
 	 */
-	public RichdatashetSemanticColumns(@Nonnull List<String> columnUIDs)
+	public RichdatashetsSemanticColumns(@Nonnull List<String> columnUIDs)
 	{
 		int nColumns = columnUIDs.size();
 		
@@ -88,13 +88,13 @@ public class RichdatashetSemanticColumns
 	
 	/**
 	 * @param uid case insensitive (auto uppercased)
-	 * @throws RichdatashetNoSuchColumnException  if not present
+	 * @throws RichdatashetsNoSuchColumnException  if not present
 	 */
-	public int requireIndexByUID(String uid) throws RichdatashetNoSuchColumnException
+	public int requireIndexByUID(String uid) throws RichdatashetsNoSuchColumnException
 	{
 		Integer i = getIndexByUID(uid);
 		if (i == null)
-			throw new RichdatashetNoSuchColumnException(uid);
+			throw new RichdatashetsNoSuchColumnException(uid);
 		else
 			return i;
 	}
@@ -119,14 +119,14 @@ public class RichdatashetSemanticColumns
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RichdatashetSemanticColumns other = (RichdatashetSemanticColumns) obj;
+		RichdatashetsSemanticColumns other = (RichdatashetsSemanticColumns) obj;
 		if (!Arrays.equals(uids, other.uids))
 			return false;
 		return true;
 	}
 	
 	
-	public boolean hasSameUIDsIgnoringOrder(RichdatashetSemanticColumns other)
+	public boolean hasSameUIDsIgnoringOrder(RichdatashetsSemanticColumns other)
 	{
 		return new HashSet<>(this.getUIDsReadonly()).equals(new HashSet<>(other.getUIDsReadonly()));
 	}
