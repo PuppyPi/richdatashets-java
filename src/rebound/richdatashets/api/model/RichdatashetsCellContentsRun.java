@@ -6,9 +6,9 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
 @Immutable
-public class RichdatashetsCellRun
+public class RichdatashetsCellContentsRun
 {
-	public static final RichdatashetsCellRun Blank = new RichdatashetsCellRun("", false, false, false, false, RichdatashetsCellRunScriptLevel.Normal, null);
+	public static final RichdatashetsCellContentsRun Blank = new RichdatashetsCellContentsRun("", false, false, false, false, RichdatashetsCellRunScriptLevel.Normal, null);
 	
 	
 	
@@ -27,7 +27,7 @@ public class RichdatashetsCellRun
 	protected final @Nonnull RichdatashetsCellRunScriptLevel scriptLevel;
 	protected final @Nullable RichdatashetsColor textColor;
 	
-	public RichdatashetsCellRun(String contents, boolean bold, boolean italic, boolean underline, boolean strikethrough, RichdatashetsCellRunScriptLevel scriptLevel, RichdatashetsColor textColor)
+	public RichdatashetsCellContentsRun(String contents, boolean bold, boolean italic, boolean underline, boolean strikethrough, RichdatashetsCellRunScriptLevel scriptLevel, RichdatashetsColor textColor)
 	{
 		this.contents = requireNonNull(contents);
 		this.bold = bold;
@@ -62,7 +62,7 @@ public class RichdatashetsCellRun
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RichdatashetsCellRun other = (RichdatashetsCellRun) obj;
+		RichdatashetsCellContentsRun other = (RichdatashetsCellContentsRun) obj;
 		if (bold != other.bold)
 			return false;
 		if (contents == null)

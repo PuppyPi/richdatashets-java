@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
  * They're only useful here in this object!<br>
  * (I mean there are two different kinds that both start at zero so that could never be XD )<br>
  * 
- * + The {@link RichdatashetsCell}s in single-value cells and inside multivalue cell {@link List}s are {@link Nonnull not nullable}.  The lists are however able to be empty.
+ * + The {@link RichdatashetsCellContents}s in single-value cells and inside multivalue cell {@link List}s are {@link Nonnull not nullable}.  The lists are however able to be empty.
  */
 public class RichdatashetsTableContents
 {
@@ -123,7 +123,7 @@ public class RichdatashetsTableContents
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public @Nonnull RichdatashetsCell getCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
+	public @Nonnull RichdatashetsCellContents getCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
 	{
 		return rows.get(rowIndex).getSingleValuedColumns().get(columnIndex);
 	}
@@ -133,7 +133,7 @@ public class RichdatashetsTableContents
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public void setCell(int columnIndex, int rowIndex, @Nonnull RichdatashetsCell value) throws IndexOutOfBoundsException
+	public void setCell(int columnIndex, int rowIndex, @Nonnull RichdatashetsCellContents value) throws IndexOutOfBoundsException
 	{
 		requireNonNull(value);
 		rows.get(rowIndex).getSingleValuedColumns().set(columnIndex, value);
@@ -146,7 +146,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if rowIndex is too small or large
 	 */
-	public @Nonnull RichdatashetsCell getCell(String columnUID, int rowIndex) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public @Nonnull RichdatashetsCellContents getCell(String columnUID, int rowIndex) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		return getCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex);
 	}
@@ -157,7 +157,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if rowIndex is too small or large
 	 */
-	public void setCell(String columnUID, int rowIndex, @Nonnull RichdatashetsCell value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public void setCell(String columnUID, int rowIndex, @Nonnull RichdatashetsCellContents value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		setCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex, value);
 	}
@@ -171,7 +171,7 @@ public class RichdatashetsTableContents
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public @Nonnull List<RichdatashetsCell> getMultiCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
+	public @Nonnull List<RichdatashetsCellContents> getMultiCell(int columnIndex, int rowIndex) throws IndexOutOfBoundsException
 	{
 		return rows.get(rowIndex).getMultiValuedColumns().get(columnIndex);
 	}
@@ -181,7 +181,7 @@ public class RichdatashetsTableContents
 	 * @param rowIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or rowIndex is too small or large
 	 */
-	public void setMultiCell(int columnIndex, int rowIndex, @Nonnull List<RichdatashetsCell> value) throws IndexOutOfBoundsException
+	public void setMultiCell(int columnIndex, int rowIndex, @Nonnull List<RichdatashetsCellContents> value) throws IndexOutOfBoundsException
 	{
 		rows.get(rowIndex).getMultiValuedColumns().set(columnIndex, value);
 	}
@@ -195,7 +195,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if rowIndex is too small or large
 	 */
-	public @Nonnull List<RichdatashetsCell> getMultiCell(String columnUID, int rowIndex) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public @Nonnull List<RichdatashetsCellContents> getMultiCell(String columnUID, int rowIndex) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		return getMultiCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex);
 	}
@@ -206,7 +206,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if rowIndex is too small or large
 	 */
-	public void setMultiCell(String columnUID, int rowIndex, List<RichdatashetsCell> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public void setMultiCell(String columnUID, int rowIndex, List<RichdatashetsCellContents> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		setMultiCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex, value);
 	}
@@ -223,7 +223,7 @@ public class RichdatashetsTableContents
 	 * @param columnIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or row is too small or large
 	 */
-	public @Nonnull RichdatashetsCell getCell(int columnIndex, RichdatashetsRow row) throws IndexOutOfBoundsException
+	public @Nonnull RichdatashetsCellContents getCell(int columnIndex, RichdatashetsRow row) throws IndexOutOfBoundsException
 	{
 		return row.getSingleValuedColumns().get(columnIndex);
 	}
@@ -232,7 +232,7 @@ public class RichdatashetsTableContents
 	 * @param columnIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or row is too small or large
 	 */
-	public void setCell(int columnIndex, RichdatashetsRow row, @Nonnull RichdatashetsCell value) throws IndexOutOfBoundsException
+	public void setCell(int columnIndex, RichdatashetsRow row, @Nonnull RichdatashetsCellContents value) throws IndexOutOfBoundsException
 	{
 		requireNonNull(value);
 		row.getSingleValuedColumns().set(columnIndex, value);
@@ -244,7 +244,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if row is too small or large
 	 */
-	public @Nonnull RichdatashetsCell getCell(String columnUID, RichdatashetsRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public @Nonnull RichdatashetsCellContents getCell(String columnUID, RichdatashetsRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		return getCell(columnsSingleValued.requireIndexByUID(columnUID), row);
 	}
@@ -254,7 +254,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if row is too small or large
 	 */
-	public void setCell(String columnUID, RichdatashetsRow row, @Nonnull RichdatashetsCell value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public void setCell(String columnUID, RichdatashetsRow row, @Nonnull RichdatashetsCellContents value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		setCell(columnsSingleValued.requireIndexByUID(columnUID), row, value);
 	}
@@ -267,7 +267,7 @@ public class RichdatashetsTableContents
 	 * @param columnIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or row is too small or large
 	 */
-	public @Nonnull List<RichdatashetsCell> getMultiCell(int columnIndex, RichdatashetsRow row) throws IndexOutOfBoundsException
+	public @Nonnull List<RichdatashetsCellContents> getMultiCell(int columnIndex, RichdatashetsRow row) throws IndexOutOfBoundsException
 	{
 		return row.getMultiValuedColumns().get(columnIndex);
 	}
@@ -276,7 +276,7 @@ public class RichdatashetsTableContents
 	 * @param columnIndex  starts at 0
 	 * @throws IndexOutOfBoundsException  if columnIndex or row is too small or large
 	 */
-	public void setMultiCell(int columnIndex, RichdatashetsRow row, @Nonnull List<RichdatashetsCell> value) throws IndexOutOfBoundsException
+	public void setMultiCell(int columnIndex, RichdatashetsRow row, @Nonnull List<RichdatashetsCellContents> value) throws IndexOutOfBoundsException
 	{
 		row.getMultiValuedColumns().set(columnIndex, value);
 	}
@@ -289,7 +289,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if row is too small or large
 	 */
-	public @Nonnull List<RichdatashetsCell> getMultiCell(String columnUID, RichdatashetsRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public @Nonnull List<RichdatashetsCellContents> getMultiCell(String columnUID, RichdatashetsRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		return getMultiCell(columnsSingleValued.requireIndexByUID(columnUID), row);
 	}
@@ -299,7 +299,7 @@ public class RichdatashetsTableContents
 	 * @throws RichdatashetsNoSuchColumnException  if there is no single-valued column by that uid
 	 * @throws IndexOutOfBoundsException  if row is too small or large
 	 */
-	public void setMultiCell(String columnUID, RichdatashetsRow row, List<RichdatashetsCell> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
+	public void setMultiCell(String columnUID, RichdatashetsRow row, List<RichdatashetsCellContents> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
 		setMultiCell(columnsSingleValued.requireIndexByUID(columnUID), row, value);
 	}
@@ -322,25 +322,25 @@ public class RichdatashetsTableContents
 	
 	
 	/**
-	 * Adds a new row with {@link RichdatashetsCell#Blank blank} cells to the end, returning it in case you want to edit it!<br>
+	 * Adds a new row with {@link RichdatashetsCellContents#Blank blank} cells to the end, returning it in case you want to edit it!<br>
 	 * (Its index will be = {@link #getNumberOfRows()} just before this is called :3 )<br>
 	 * <br>
 	 * The lists in multivalued columns will be writable but (initially) empty lists.<br>
 	 */
 	public RichdatashetsRow addBlankRow()
 	{
-		return addBlankRow(RichdatashetsCell.Blank);
+		return addBlankRow(RichdatashetsCellContents.Blank);
 	}
 	
 	/**
 	 * Like {@link #addBlankRow()} but you get to set the value of newly-created cells (single-valued ones; multi-valued ones still start with each their own separate empty mutable list)
 	 */
-	public RichdatashetsRow addBlankRow(RichdatashetsCell newSingleValuedCellValues)
+	public RichdatashetsRow addBlankRow(RichdatashetsCellContents newSingleValuedCellValues)
 	{
 		RichdatashetsRow row = new RichdatashetsRow();
 		
-		RichdatashetsCell[] s = new RichdatashetsCell[getNumberOfColumnsSingleValued()];
-		List<RichdatashetsCell>[] m = new List[getNumberOfColumnsMultiValued()];
+		RichdatashetsCellContents[] s = new RichdatashetsCellContents[getNumberOfColumnsSingleValued()];
+		List<RichdatashetsCellContents>[] m = new List[getNumberOfColumnsMultiValued()];
 		Arrays.fill(s, newSingleValuedCellValues);
 		
 		for (int i = 0; i < m.length; i++)

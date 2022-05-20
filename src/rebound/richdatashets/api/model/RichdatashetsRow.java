@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class RichdatashetsRow
 {
-	protected List<RichdatashetsCell> singleValuedColumns;
-	protected List<List<RichdatashetsCell>> multiValuedColumns;
+	protected List<RichdatashetsCellContents> singleValuedColumns;
+	protected List<List<RichdatashetsCellContents>> multiValuedColumns;
 	protected int originalDataRowIndex = -1;  //-1, 0, 1, 2, etc.
 	
 	public RichdatashetsRow()
@@ -22,35 +22,35 @@ public class RichdatashetsRow
 	 * @param singleValuedColumns  live reference to it is kept!
 	 * @param multiValuedColumns  live reference to it is kept!
 	 */
-	public RichdatashetsRow(List<RichdatashetsCell> singleValuedColumns, List<List<RichdatashetsCell>> multiValuedColumns)
+	public RichdatashetsRow(List<RichdatashetsCellContents> singleValuedColumns, List<List<RichdatashetsCellContents>> multiValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 	}
 	
-	public RichdatashetsRow(List<RichdatashetsCell> singleValuedColumns, List<List<RichdatashetsCell>> multiValuedColumns, int originalDataRowIndex)
+	public RichdatashetsRow(List<RichdatashetsCellContents> singleValuedColumns, List<List<RichdatashetsCellContents>> multiValuedColumns, int originalDataRowIndex)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 		this.setOriginalDataRowIndex(originalDataRowIndex);
 	}
 
-	public List<RichdatashetsCell> getSingleValuedColumns()
+	public List<RichdatashetsCellContents> getSingleValuedColumns()
 	{
 		return singleValuedColumns;
 	}
 	
-	public void setSingleValuedColumns(List<RichdatashetsCell> singleValuedColumns)
+	public void setSingleValuedColumns(List<RichdatashetsCellContents> singleValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 	}
 	
-	public List<List<RichdatashetsCell>> getMultiValuedColumns()
+	public List<List<RichdatashetsCellContents>> getMultiValuedColumns()
 	{
 		return multiValuedColumns;
 	}
 	
-	public void setMultiValuedColumns(List<List<RichdatashetsCell>> multiValuedColumns)
+	public void setMultiValuedColumns(List<List<RichdatashetsCellContents>> multiValuedColumns)
 	{
 		this.multiValuedColumns = multiValuedColumns;
 	}

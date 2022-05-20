@@ -16,14 +16,14 @@ import javax.annotation.concurrent.Immutable;
  * + Datashets supports boolean columns, but exposes them to client code as just strings of "true" and "false" (case very insensitive and not guaranteed in reading)!<br>
  */
 @Immutable
-public class RichdatashetsCell
+public class RichdatashetsCellContents
 {
 	/**
 	 * Note that this is just for performance.<br>
 	 * There can be multiple instances of blank datashet cells (and indeed, equivalent non-blank ones), just like there can be multiple empty strings or "abc"'s
 	 * that are Java Reference-wise different (==) but equivalence-wise the same (.equals(), except that this doesn't support that ^^' )<br>
 	 */
-	public static final RichdatashetsCell Blank = new RichdatashetsCell(singletonList(RichdatashetsCellRun.Blank), null, null);
+	public static final RichdatashetsCellContents Blank = new RichdatashetsCellContents(singletonList(RichdatashetsCellContentsRun.Blank), null, null);
 	
 	
 	public static enum RichdatashetsJustification
@@ -38,7 +38,7 @@ public class RichdatashetsCell
 	 * This list must never be empty; if the cell is empty, then use a single run of "" like just mentioned, so that there's not two competing standards for empty-cells X3
 	 * + Note that emptiness being "bold" and etc. only works if there is no text in the cell at all in Google Sheets and Gnumeric, so that's what we'll standardize on.
 	 */
-	protected final @Nonnull List<RichdatashetsCellRun> contents;
+	protected final @Nonnull List<RichdatashetsCellContentsRun> contents;
 	protected final @Nullable RichdatashetsJustification justification;
 	protected final @Nullable RichdatashetsColor backgroundColor;
 	
@@ -46,7 +46,7 @@ public class RichdatashetsCell
 	 * @param contents  an immutable copy is made so no worries about re-using the list provided here
 	 * @param justification  null means default based on language (eg, Left for English, Right for Arabic)
 	 */
-	public RichdatashetsCell(List<RichdatashetsCellRun> contents, RichdatashetsJustification justification, RichdatashetsColor backgroundColor)
+	public RichdatashetsCellContents(List<RichdatashetsCellContentsRun> contents, RichdatashetsJustification justification, RichdatashetsColor backgroundColor)
 	{
 		requireNonNull(contents);
 		
@@ -57,7 +57,7 @@ public class RichdatashetsCell
 		}
 		else if (contents.size() != 1)
 		{
-			for (RichdatashetsCellRun r : contents)
+			for (RichdatashetsCellContentsRun r : contents)
 				if (r.getContents().isEmpty())
 					throw new IllegalArgumentException("No entry in runs-list may have empty text unless it's the only element (which is how an empty-text cell is encoded, since they can have formatting).");
 		}
@@ -85,7 +85,7 @@ public class RichdatashetsCell
 	public String justText()
 	{
 		StringBuilder b = new StringBuilder();
-		for (RichdatashetsCellRun r : getContents())
+		for (RichdatashetsCellContentsRun r : getContents())
 			b.append(r.getContents());
 		return b.toString();
 	}
@@ -114,7 +114,7 @@ public class RichdatashetsCell
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RichdatashetsCell other = (RichdatashetsCell) obj;
+		RichdatashetsCellContents other = (RichdatashetsCellContents) obj;
 		if (backgroundColor == null)
 		{
 			if (other.backgroundColor != null)
@@ -136,7 +136,7 @@ public class RichdatashetsCell
 	
 	
 	
-	public List<RichdatashetsCellRun> getContents()
+	public List<RichdatashetsCellContentsRun> getContents()
 	{
 		return contents;
 	}
