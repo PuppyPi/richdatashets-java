@@ -327,15 +327,15 @@ public class RichdatashetsTable
 	 * <br>
 	 * The lists in multivalued columns will be writable but (initially) empty lists.<br>
 	 */
-	public RichdatashetsRow addBlankRow()
+	public RichdatashetsRow addRow()
 	{
-		return addBlankRow(RichdatashetsCellContents.Blank);
+		return addRow(RichdatashetsCellContents.Blank);
 	}
 	
 	/**
-	 * Like {@link #addBlankRow()} but you get to set the value of newly-created cells (single-valued ones; multi-valued ones still start with each their own separate empty mutable list)
+	 * Like {@link #addRow()} but you get to set the value of newly-created cells (single-valued ones; multi-valued ones still start with each their own separate empty mutable list)
 	 */
-	public RichdatashetsRow addBlankRow(RichdatashetsCellContents newSingleValuedCellValues)
+	public RichdatashetsRow addRow(RichdatashetsCellContents newSingleValuedCellValues)
 	{
 		RichdatashetsRow row = new RichdatashetsRow();
 		
