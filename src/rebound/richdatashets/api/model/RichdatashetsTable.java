@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
  * 
  * + The {@link RichdatashetsCellContents}s in single-value cells and inside multivalue cell {@link List}s are {@link Nonnull not nullable}.  The lists are however able to be empty.
  */
-public class RichdatashetsTableContents
+public class RichdatashetsTable
 {
 	protected final RichdatashetsSemanticColumns columnsSingleValued;
 	protected final RichdatashetsSemanticColumns columnsMultiValued;
@@ -23,12 +23,12 @@ public class RichdatashetsTableContents
 	protected List<RichdatashetsRow> rows;
 	
 	
-	public RichdatashetsTableContents(List<String> columnUIDsSingleValued, List<String> columnUIDsMultiValued)
+	public RichdatashetsTable(List<String> columnUIDsSingleValued, List<String> columnUIDsMultiValued)
 	{
 		this(new RichdatashetsSemanticColumns(columnUIDsSingleValued), new RichdatashetsSemanticColumns(columnUIDsMultiValued));
 	}
 	
-	public RichdatashetsTableContents(RichdatashetsSemanticColumns columnsSingleValued, RichdatashetsSemanticColumns columnsMultiValued)
+	public RichdatashetsTable(RichdatashetsSemanticColumns columnsSingleValued, RichdatashetsSemanticColumns columnsMultiValued)
 	{
 		this(columnsSingleValued, columnsMultiValued, new ArrayList<>());
 	}
@@ -37,7 +37,7 @@ public class RichdatashetsTableContents
 	 * + Note that there can't be any overlap between the UIDs of single and multi value column-sets!
 	 * @param rows  this will be kept as a live reference!  (you can set it to null briefly, but make sure to {@link #setRows(List) set it} to something sensible before it's used!!)
 	 */
-	public RichdatashetsTableContents(@Nonnull RichdatashetsSemanticColumns columnsSingleValued, @Nonnull RichdatashetsSemanticColumns columnsMultiValued, List<RichdatashetsRow> rows)
+	public RichdatashetsTable(@Nonnull RichdatashetsSemanticColumns columnsSingleValued, @Nonnull RichdatashetsSemanticColumns columnsMultiValued, List<RichdatashetsRow> rows)
 	{
 		requireNonNull(columnsSingleValued);
 		requireNonNull(columnsMultiValued);
