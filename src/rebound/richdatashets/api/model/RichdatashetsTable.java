@@ -211,7 +211,7 @@ public class RichdatashetsTable
 	 */
 	public @Nonnull List<RichdatashetsCellContents> getMultiCell(@Nonnull String columnUID, int rowIndex) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		return getMultiCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex);
+		return getMultiCell(columnsMultiValued.requireIndexByUID(columnUID), rowIndex);
 	}
 	
 	/**
@@ -222,7 +222,7 @@ public class RichdatashetsTable
 	 */
 	public void setMultiCell(@Nonnull String columnUID, int rowIndex, List<RichdatashetsCellContents> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		setMultiCell(columnsSingleValued.requireIndexByUID(columnUID), rowIndex, value);
+		setMultiCell(columnsMultiValued.requireIndexByUID(columnUID), rowIndex, value);
 	}
 	
 	
@@ -305,7 +305,7 @@ public class RichdatashetsTable
 	 */
 	public @Nonnull List<RichdatashetsCellContents> getMultiCell(@Nonnull String columnUID, RichdatashetsUsedRow row) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		return getMultiCell(columnsSingleValued.requireIndexByUID(columnUID), row);
+		return getMultiCell(columnsMultiValued.requireIndexByUID(columnUID), row);
 	}
 	
 	/**
@@ -315,7 +315,7 @@ public class RichdatashetsTable
 	 */
 	public void setMultiCell(@Nonnull String columnUID, RichdatashetsUsedRow row, List<RichdatashetsCellContents> value) throws RichdatashetsNoSuchColumnException, IndexOutOfBoundsException
 	{
-		setMultiCell(columnsSingleValued.requireIndexByUID(columnUID), row, value);
+		setMultiCell(columnsMultiValued.requireIndexByUID(columnUID), row, value);
 	}
 	
 	
