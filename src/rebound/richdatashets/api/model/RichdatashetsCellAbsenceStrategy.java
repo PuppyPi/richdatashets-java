@@ -26,6 +26,13 @@ public class RichdatashetsCellAbsenceStrategy
 	public static final RichdatashetsCellAbsenceStrategy EmptyTextCellStrategy = new RichdatashetsCellAbsenceStrategy(c -> c.isEmptyText(), RichshetsCellContents.Blank);
 	public static final RichdatashetsCellAbsenceStrategy EmptyShadedGrayCellStrategy = new RichdatashetsCellAbsenceStrategy(c -> c.isEmptyText() && c.getBackgroundColor() != null && (c.getBackgroundColor().getR() < 250 || c.getBackgroundColor().getG() < 250 || c.getBackgroundColor().getB() < 250), new RichshetsCellContents(singletonList(RichshetsCellContentsRun.Blank), null, new RichshetsColor(224, 224, 224), null));  //*any* color other than white (when text is empty) is considered absent!  (250 not 255 juuuuuuust in case there's some kind of rounding or conversion errors or something ^^''  250 is the lowest Green can go before I notice it's not white and 5 units probably is plenty for rounding errors, so that seems like a fine threshold :3  —PP )
 	
+	/**
+	 * This produces the same as {@link #EmptyShadedGrayCellStrategy} but accept unshaded (or shaded) cells with the contents "null" and bold, italic, underline, or strikethrough, or some combination, as counting as well (which will get converted to empty shaded form if canonicalization is done by using this one's {@link #getAbsentValueForNewCells()})
+	 */
+	public static final RichdatashetsCellAbsenceStrategy EmptyOrNullShadedGrayOrRichTextCellStrategy = new RichdatashetsCellAbsenceStrategy(c -> ((c.isEmptyText() || c.justText().equalsIgnoreCase("null")) && c.getBackgroundColor() != null && (c.getBackgroundColor().getR() < 250 || c.getBackgroundColor().getG() < 250 || c.getBackgroundColor().getB() < 250)) || (c.justText().equalsIgnoreCase("null") && forAny(r -> r.isBold() || r.isItalic() || r.isUnderline() || r.isStrikethrough(), c.getContents())), new RichshetsCellContents(singletonList(RichshetsCellContentsRun.Blank), null, new RichshetsColor(224, 224, 224), null));   //*any* color other than white (when text is empty) is considered absent!  (250 not 255 juuuuuuust in case there's some kind of rounding or conversion errors or something ^^''  250 is the lowest Green can go before I notice it's not white and 5 units probably is plenty for rounding errors, so that seems like a fine threshold :3  —PP )
+	
+	
+	
 	
 	protected final @Nonnull Predicate<RichshetsCellContents> isAbsent;
 	protected final @Nonnull RichshetsCellContents absentValueForNewCells;
@@ -88,5 +95,15 @@ public class RichdatashetsCellAbsenceStrategy
 		else if (!isAbsent.equals(other.isAbsent))
 			return false;
 		return true;
+	}
+	
+	
+	
+	private static <E> boolean forAny(Predicate<E> test, Iterable<E> inputs)
+	{
+		for (E e : inputs)
+			if (test.test(e))
+				return true;
+		return false;
 	}
 }
