@@ -50,4 +50,43 @@ public class RichdatashetsCellAbsenceStrategy
 	{
 		return absentValueForNewCells;
 	}
+	
+	
+	
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((absentValueForNewCells == null) ? 0 : absentValueForNewCells.hashCode());
+		result = prime * result + ((isAbsent == null) ? 0 : isAbsent.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RichdatashetsCellAbsenceStrategy other = (RichdatashetsCellAbsenceStrategy) obj;
+		if (absentValueForNewCells == null)
+		{
+			if (other.absentValueForNewCells != null)
+				return false;
+		}
+		else if (!absentValueForNewCells.equals(other.absentValueForNewCells))
+			return false;
+		if (isAbsent == null)
+		{
+			if (other.isAbsent != null)
+				return false;
+		}
+		else if (!isAbsent.equals(other.isAbsent))
+			return false;
+		return true;
+	}
 }
