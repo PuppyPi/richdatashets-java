@@ -19,7 +19,7 @@ public interface RichdatashetsConnection
 	
 	public default void write(RichdatashetsTable contents) throws RichdatashetsStructureException, RichdatashetsUnencodableFormatException, IOException
 	{
-		perform(true, d -> contents);
+		perform(true, d -> contents);  //if reading the sheet is actually unnecessary if not used by the client code (and thus inefficient)..then override write()!  XD  :3
 	}
 	
 	
