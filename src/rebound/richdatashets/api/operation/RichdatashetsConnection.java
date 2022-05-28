@@ -1,8 +1,10 @@
 package rebound.richdatashets.api.operation;
 
 import java.io.IOException;
+import java.util.Date;
 import javax.annotation.Nullable;
 import rebound.richdatashets.api.model.RichdatashetsTable;
+import rebound.richdatashets.api.operation.RichdatashetsOperation.RichdatashetsOperationWithDataTimestamp;
 
 public interface RichdatashetsConnection
 {
@@ -21,6 +23,19 @@ public interface RichdatashetsConnection
 	{
 		perform(true, d -> contents);  //if reading the sheet is actually unnecessary if not used by the client code (and thus inefficient)..then override write()!  XD  :3
 	}
+	
+	
+	/**
+	 * @return null if unknown (an exception is thrown like it would be in {@link #read(boolean)} if the data isn't there!)
+	 */
+	public default @Nullable Date getCurrentLastModifiedTimestamp() throws IOException
+	{
+		//if reading the sheet is unnecessary if not used by the client code (and thus inefficient)..then override write()!  XD  :3
+		Date[] c = new Date[1];
+		perform(false, (RichdatashetsOperationWithDataTimestamp)(d, t) -> {c[0] = t; return null;});
+		return c[0];
+	}
+	
 	
 	
 	public void perform(boolean performMaintenance, @Nullable RichdatashetsOperation operation) throws RichdatashetsStructureException, RichdatashetsUnencodableFormatException, IOException;
