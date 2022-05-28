@@ -1,7 +1,7 @@
 package rebound.richdatashets.api.model;
 
 import java.util.List;
-import rebound.richshets.model.cell.RichshetCellContents;
+import rebound.richshets.model.cell.RichshetsCellContents;
 
 /**
  * Note that, since some rows have extra cell data that's invisible to datashets client code (eg, because its column has no semantic uid; it's just for people not code), we must take care to preserve it!  Hence we have {@link #getOriginalDataRowIndex()}, the row index in the original
@@ -10,8 +10,8 @@ import rebound.richshets.model.cell.RichshetCellContents;
  */
 public class RichdatashetsRow
 {
-	protected List<RichshetCellContents> singleValuedColumns;
-	protected List<List<RichshetCellContents>> multiValuedColumns;
+	protected List<RichshetsCellContents> singleValuedColumns;
+	protected List<List<RichshetsCellContents>> multiValuedColumns;
 	protected int originalDataRowIndex = -1;  //-1, 0, 1, 2, etc.
 	
 	public RichdatashetsRow()
@@ -23,35 +23,35 @@ public class RichdatashetsRow
 	 * @param singleValuedColumns  live reference to it is kept!
 	 * @param multiValuedColumns  live reference to it is kept!
 	 */
-	public RichdatashetsRow(List<RichshetCellContents> singleValuedColumns, List<List<RichshetCellContents>> multiValuedColumns)
+	public RichdatashetsRow(List<RichshetsCellContents> singleValuedColumns, List<List<RichshetsCellContents>> multiValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 	}
 	
-	public RichdatashetsRow(List<RichshetCellContents> singleValuedColumns, List<List<RichshetCellContents>> multiValuedColumns, int originalDataRowIndex)
+	public RichdatashetsRow(List<RichshetsCellContents> singleValuedColumns, List<List<RichshetsCellContents>> multiValuedColumns, int originalDataRowIndex)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 		this.multiValuedColumns = multiValuedColumns;
 		this.setOriginalDataRowIndex(originalDataRowIndex);
 	}
 
-	public List<RichshetCellContents> getSingleValuedColumns()
+	public List<RichshetsCellContents> getSingleValuedColumns()
 	{
 		return singleValuedColumns;
 	}
 	
-	public void setSingleValuedColumns(List<RichshetCellContents> singleValuedColumns)
+	public void setSingleValuedColumns(List<RichshetsCellContents> singleValuedColumns)
 	{
 		this.singleValuedColumns = singleValuedColumns;
 	}
 	
-	public List<List<RichshetCellContents>> getMultiValuedColumns()
+	public List<List<RichshetsCellContents>> getMultiValuedColumns()
 	{
 		return multiValuedColumns;
 	}
 	
-	public void setMultiValuedColumns(List<List<RichshetCellContents>> multiValuedColumns)
+	public void setMultiValuedColumns(List<List<RichshetsCellContents>> multiValuedColumns)
 	{
 		this.multiValuedColumns = multiValuedColumns;
 	}
